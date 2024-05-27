@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
 from home import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 #Django admin header customization
 
 admin.site.site_header = " Login to Developer Barun"
@@ -12,3 +15,6 @@ urlpatterns = [
     path('projects', views.projects, name='projects'),
     path('contact', views.contact, name='contact'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
